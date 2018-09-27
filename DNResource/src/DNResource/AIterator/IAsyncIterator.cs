@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using Optional;
 
-namespace DNResource.Stream
+namespace DNResource.AIterator
 {
     public interface IAsyncIterator<T>
     {

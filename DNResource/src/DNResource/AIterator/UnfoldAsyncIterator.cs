@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Optional;
 using Optional.Linq;
 
-namespace DNResource.Stream
+namespace DNResource.AIterator
 {
     internal class UnfoldAsyncIterator<S, T> : IAsyncIterator<T>
     {
@@ -27,7 +27,7 @@ namespace DNResource.Stream
             return result.Select(pair => {
                 var item = pair.Item1;
                 var newState = pair.Item2;
-                return Tuple.Create(item, (IAsyncIterator<T>) new StateExtractingAsyncIterator<S, T>(newState, extractor));
+                return Tuple.Create(item, (IAsyncIterator<T>) new UnfoldAsyncIterator<S, T>(newState, extractor));
             });
         }
     }

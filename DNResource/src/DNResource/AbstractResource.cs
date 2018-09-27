@@ -7,32 +7,31 @@ namespace DNResource
 
     public abstract class AbstractResource<T> : IResource<T>
     {
-        public IResource<O> Map<O>(Func<T, O> f)
+        public IResource<O> Select<O>(Func<T, O> f)
         {
-            return new MapResource<O, T>(this, i => Task.FromResult(f(i)));
+            return new SelectResource<O, T>(this, i => Task.FromResult(f(i)));
         }
 
-        public IResource<O> MapAsync<O>(Func<T, Task<O>> f)
+        public IResource<O> SelectAsync<O>(Func<T, Task<O>> f)
         {
-            return new MapResource<O, T>(this, f);
+            return new SelectResource<O, T>(this, f);
         }
 
-        public IResource<O> FlatMap<O>(Func<T, IResource<O>> f)
+        public IResource<O> SelectMany<O>(Func<T, IResource<O>> f)
         {
-            return new FlatMapResource<O, T>(this, i => Task.FromResult(f(i)));
+            return new SelectManyResource<O, T>(this, i => Task.FromResult(f(i)));
         }
 
-        public IResource<O> FlatMapAsync<O>(Func<T, Task<IResource<O>>> f)
+        public IResource<O> SelectManyAsync<O>(Func<T, Task<IResource<O>>> f)
         {
-            return new FlatMapResource<O, T>(this, f);
+            return new SelectManyResource<O, T>(this, f);
         }
 
-        public Task<T> UnsafeGet()
+        public Task<T> UnsafeGetAsync()
         {
-            return UnsafeEvaluate(resource => Task.FromResult(resource));
+            return UnsafeEvaluateAsync(resource => Task.FromResult(resource));
         }
 
-        public abstract Task<R> UnsafeEvaluate<R>(Func<T, Task<R>> callback);
-
+        public abstract Task<R> UnsafeEvaluateAsync<R>(Func<T, Task<R>> callback);
     }
 }

@@ -9,7 +9,7 @@ using Optional;
 using Optional.Linq;
 using Optional.Unsafe;
 
-namespace DNResource.Stream
+namespace DNResource.AIterator
 {
     public static class AsyncIteratorExtensions
     {

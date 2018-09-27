@@ -8,7 +8,7 @@ namespace DNResource.IO
 
     public static class StreamResource
     {
-        public static IResource<Stream> FromFile(string filePath, FileMode mode)
+        public static IResource<System.IO.Stream> FromFile(string filePath, FileMode mode)
         {
             return Create(() => new FileStream(filePath, mode));
         }

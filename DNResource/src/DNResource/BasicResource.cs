@@ -15,7 +15,7 @@ namespace DNResource
             this.closer = closer;
         }
 
-        public override async Task<R> UnsafeEvaluate<R>(Func<T, Task<R>> callback)
+        public override async Task<R> UnsafeEvaluateAsync<R>(Func<T, Task<R>> callback)
         {
             var resource = await this.factory();
             try

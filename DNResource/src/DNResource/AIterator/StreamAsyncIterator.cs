@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Optional;
 using Optional.Linq;
 
-namespace DNResource.Stream
+namespace DNResource.AIterator
 {
     public static class StreamAsyncIterator
     {
